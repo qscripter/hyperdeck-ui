@@ -49,26 +49,31 @@
             <div class="btn-group">
               <button
                 class="btn btn-default"
+                ng-disabled="!hyperdeck.remoteEnabled"
                 ng-click="vm.sendTransportCommand(hyperdeck._id, 'play: speed: -400')">
                 <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
               </button>
               <button
                 class="btn btn-default"
+                ng-disabled="!hyperdeck.remoteEnabled"
                 ng-click="vm.sendTransportCommand(hyperdeck._id, 'record')">
                 <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
               </button>
               <button
                 class="btn btn-default"
+                ng-disabled="!hyperdeck.remoteEnabled"
                 ng-click="vm.sendTransportCommand(hyperdeck._id, 'play')">
                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
               </button>
               <button
                 class="btn btn-default"
+                ng-disabled="!hyperdeck.remoteEnabled"
                 ng-click="vm.sendTransportCommand(hyperdeck._id, 'play: speed: 400')">
                 <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
               </button>
               <button
                 class="btn btn-default"
+                ng-disabled="!hyperdeck.remoteEnabled"
                 ng-click="vm.sendTransportCommand(hyperdeck._id, 'stop')">
                 <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
               </button>
