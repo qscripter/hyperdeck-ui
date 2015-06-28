@@ -126,6 +126,23 @@
                 <p class="form-control-static">{{value}}</p>
               </div>
             </div>
+            <br>
+            <h4>Slot 1 <button class="btn btn-sm btn-default pull-right" ng-click="vm.getSlotInfo(hyperdeck, 1)">Refresh</button></h4>
+            <div class="form-group" ng-repeat="(key, value) in hyperdeck.slotInfo[1].params">
+              <label class="col-sm-6 control-label">{{key}}</label>
+              <div class="col-sm-6">
+                <p class="form-control-static">{{value}}</p>
+              </div>
+            </div>
+            <br>
+            <h4>Slot 2 <button class="btn btn-sm btn-default pull-right" ng-click="vm.getSlotInfo(hyperdeck, 2)">Refresh</button></h4>
+            <div class="form-group" ng-repeat="(key, value) in hyperdeck.slotInfo[2].params">
+              <label class="col-sm-6 control-label">{{key}}</label>
+              <div class="col-sm-6">
+                <p class="form-control-static">{{value}}</p>
+              </div>
+            </div>
+
 
 
           </form>

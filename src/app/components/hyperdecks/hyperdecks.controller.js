@@ -17,6 +17,7 @@ function controller(hyperdecks, Hyperdeck) {
   vm.connect = connect;
   vm.getConfiguration = getConfiguration;
   vm.getTransportInfo = getTransportInfo;
+  vm.getSlotInfo = getSlotInfo;
 
   function init() {
     vm.hyperdecks = hyperdecks;
@@ -52,6 +53,15 @@ function controller(hyperdecks, Hyperdeck) {
   function getTransportInfo(hyperdeck) {
     Hyperdeck.getTransportInfo(hyperdeck._id).then(function (transportInfo) {
       hyperdeck.transportInfo = transportInfo;
+    });
+  }
+
+  function getSlotInfo(hyperdeck, slot) {
+    Hyperdeck.getSlotInfo(hyperdeck._id, slot).then(function (slotInfo) {
+      if (!_.has(hyperdeck, 'slotInfo')) {
+        hyperdeck.slotInfo = {};
+      }
+      hyperdeck.slotInfo[slot] = slotInfo;
     });
   }
 }

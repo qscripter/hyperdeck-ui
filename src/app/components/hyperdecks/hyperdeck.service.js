@@ -14,7 +14,8 @@ function service($http) {
     getEvents: getEvents,
     connect: connect,
     getConfiguration: getConfiguration,
-    getTransportInfo: getTransportInfo
+    getTransportInfo: getTransportInfo,
+    getSlotInfo: getSlotInfo
   };
 
   var endpoint = '/api/hyperdecks';
@@ -56,6 +57,12 @@ function service($http) {
       .then(returnData);
   }
 
+  function getSlotInfo(id, slot) {
+    return $http.get(singleEndpoint(id) + '/slot/' + slot)
+      .then(returnData)
+      .then(secondsToMinutes);
+  }
+
   function getTransportInfo(id) {
     return $http.get(singleEndpoint(id) + '/transport-info')
       .then(returnData);
@@ -67,6 +74,13 @@ function service($http) {
 
   function returnData(response) {
     return response.data;
+  }
+
+  function secondsToMinutes(slotInfo) {
+    if(_.has(slotInfo.params, 'recording time')) {
+      slotInfo.params['recording time'] = Math.floor(slotInfo.params['recording time']/60);
+    }
+    return slotInfo;
   }
 }
 })();
