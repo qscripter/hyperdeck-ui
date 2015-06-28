@@ -11,7 +11,10 @@ function service($http) {
     getAll: getAll,
     setRemote: setRemote,
     sendTransportCommand: sendTransportCommand,
-    getEvents: getEvents
+    getEvents: getEvents,
+    connect: connect,
+    getConfiguration: getConfiguration,
+    getTransportInfo: getTransportInfo
   };
 
   var endpoint = '/api/hyperdecks';
@@ -40,6 +43,26 @@ function service($http) {
         hyperDeck: id
       }
     }).then(returnData);
+  }
+
+  function connect(id) {
+    return $http.post(singleEndpoint(id) + '/command', {
+      connect: true
+    });
+  }
+
+  function getConfiguration(id) {
+    return $http.get(singleEndpoint(id) + '/configuration')
+      .then(returnData);
+  }
+
+  function getTransportInfo(id) {
+    return $http.get(singleEndpoint(id) + '/transport-info')
+      .then(returnData);
+  }
+
+  function singleEndpoint(id) {
+    return endpoint + '/' + id;
   }
 
   function returnData(response) {
