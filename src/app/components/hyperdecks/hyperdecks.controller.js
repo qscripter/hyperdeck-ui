@@ -6,7 +6,7 @@ angular
   .controller('HyperdecksCtrl', controller);
 
 /* @ngInject */
-function controller(hyperdecks, Hyperdeck, $websocket) {
+function controller(hyperdecks, Hyperdeck, $websocket, $location) {
   var vm = this;
 
   init();
@@ -20,7 +20,8 @@ function controller(hyperdecks, Hyperdeck, $websocket) {
   vm.getSlotInfo = getSlotInfo;
 
   function init() {
-    var dataStream = $websocket('ws://localhost:8888');
+    var socketUrl = 'ws://' + $location.host() + ':8888';
+    var dataStream = $websocket(socketUrl);
     dataStream.onMessage(function(message) {
         var data = JSON.parse(message.data);
         var deck;
