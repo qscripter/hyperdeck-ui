@@ -10,7 +10,8 @@ function service($http) {
   var svc = {
     getAll: getAll,
     setRemote: setRemote,
-    sendTransportCommand: sendTransportCommand
+    sendTransportCommand: sendTransportCommand,
+    getEvents: getEvents
   };
 
   var endpoint = '/api/hyperdecks';
@@ -31,6 +32,14 @@ function service($http) {
     return $http.post(endpoint + '/' + id + '/command', {
       transportCommand: command
     });
+  }
+
+  function getEvents(id) {
+    return $http.get('/api/events', {
+      params: {
+        hyperDeck: id
+      }
+    }).then(returnData);
   }
 
   function returnData(response) {
