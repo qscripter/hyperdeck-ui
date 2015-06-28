@@ -8,11 +8,16 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
+      .state('hyperdecks', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+        templateUrl: 'app/components/hyperdecks/hyperdecks.html',
+        controller: 'HyperdecksCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          hyperdecks: function (Hyperdeck) {
+            return Hyperdeck.getAll();
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');

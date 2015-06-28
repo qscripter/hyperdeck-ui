@@ -1,0 +1,101 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">HyperDeck Control</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container main">
+  <div
+    ng-repeat="hyperdeck in vm.hyperdecks"
+    class="panel panel-default"
+    ng-class="
+      {
+        'panel-success': hyperdeck.connectionStatus==='Connected',
+        'panel-danger': hyperdeck.connectionStatus==='Timed Out'
+      }
+    ">
+    <div class="panel-heading">
+      <h1 class="panel-title">{{hyperdeck.name}}</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Control</h3>
+        <label class="checkbox-inline">
+          <input
+            type="checkbox"
+            ng-model="hyperdeck.remoteEnabled"
+            ng-change="vm.updateRemote(hyperdeck)"> Control Enabled
+        </label>
+
+        <div class="btn-group">
+          <button
+            class="btn btn-default"
+            ng-click="vm.sendTransportCommand(hyperdeck._id, 'play: speed: -400')">
+            <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="vm.sendTransportCommand(hyperdeck._id, 'record')">
+            <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="vm.sendTransportCommand(hyperdeck._id, 'play')">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="vm.sendTransportCommand(hyperdeck._id, 'play: speed: 400')">
+            <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="vm.sendTransportCommand(hyperdeck._id, 'stop')">
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+          </button>
+        </div>
+      <h3>Status</h3>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Description</label>
+          <div class="col-sm-4">
+            <p class="form-control-static">{{hyperdeck.description}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Connection Status</label>
+          <div class="col-sm-4">
+            <p class="form-control-static">{{hyperdeck.connectionStatus}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">IP Address</label>
+          <div class="col-sm-4">
+            <p class="form-control-static">{{hyperdeck.ipAddress}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Active</label>
+          <div class="col-sm-4">
+            <p class="form-control-static">{{hyperdeck.active}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Remote Enabled</label>
+          <div class="col-sm-4">
+            <p class="form-control-static">{{hyperdeck.remoteEnabled}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
