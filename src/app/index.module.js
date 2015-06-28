@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('hyperdeckUi', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap']);
+    .module('hyperdeckUi', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'ngWebSocket']);
 
 })();
